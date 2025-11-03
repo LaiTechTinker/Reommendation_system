@@ -1,0 +1,25 @@
+import os
+from datetime import date
+from dotenv import load_dotenv
+load_dotenv()
+DB_NAME=os.getenv("DB_NAME")
+COLLECTION_NAME1=os.getenv("COLLECTION_NAME1")
+COLLECTION_NAME2=os.getenv("COLLECTION_NAME2")
+PIPELINE_NAME=os.getenv("PIPELINE_NAME")
+ARTIFACT_DIR=os.getenv("ARTIFACT_DIR")
+MONGODB_STRING=os.getenv("MONGODB_STRING")
+
+
+print(MONGODB_STRING)
+print(DB_NAME)
+"""
+Data Ingestion related constant start with DATA_INGESTION VAR NAME
+"""
+DATA_INGESTION_COLLECTION_NAME: str = "Itel_Data"
+DATA_INGESTION_DIR_NAME: str = "Data_ingestion"
+DATA_INGESTION_FEATURE_STORE_DIR: str = "raw_data"
+DATA_INGESTION_INGESTED_DIR: str = "ingested"
+DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
+FILE_NAME:str="data.csv"
+TRAIN_FILE_NAME:str="train.csv"
+TEST_FILE_NAME:str="test.csv"

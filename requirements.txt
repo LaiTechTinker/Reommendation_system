@@ -1,0 +1,9 @@
+pandas
+numpy 
+ipykernel
+scikit-learn
+nltk
+dotenv
+pymongo
+dill
+from_root
