@@ -18,3 +18,8 @@ class DataIngestionConfig:
     testing_file_path: str = os.path.join(data_ingestion_dir, DATA_INGESTION_INGESTED_DIR, TEST_FILE_NAME)
     train_test_split_ratio: float = DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO
     collection_name:str = DATA_INGESTION_COLLECTION_NAME
+
+@dataclass
+class DataValidationConfig:
+    dataValidationDir:str=os.path.join(artifactConfig.artifact_dir,DATA_VALIDATION_FOLDER)
+    report_file_path:str=os.path.join(dataValidationDir,DATE_VALIDATION_REPORT_FILE)
