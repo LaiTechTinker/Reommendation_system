@@ -29,3 +29,4 @@ The constants for data validation are defined here
 """
 DATA_VALIDATION_FOLDER:str="Data_validation"
 DATE_VALIDATION_REPORT_FILE:str="report.yaml"
+SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
