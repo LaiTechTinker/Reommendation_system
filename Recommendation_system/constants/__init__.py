@@ -13,7 +13,7 @@ MONGODB_STRING=os.getenv("MONGODB_STRING")
 print(MONGODB_STRING)
 print(DB_NAME)
 """
-Data Ingestion related constant start with DATA_INGESTION VAR NAME
+Data Ingestion related constants are defined here
 """
 DATA_INGESTION_COLLECTION_NAME: str = "Itel_Data"
 DATA_INGESTION_DIR_NAME: str = "Data_ingestion"
@@ -23,3 +23,9 @@ DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
 FILE_NAME:str="data.csv"
 TRAIN_FILE_NAME:str="train.csv"
 TEST_FILE_NAME:str="test.csv"
+
+"""
+The constants for data validation are defined here 
+"""
+DATA_VALIDATION_FOLDER:str="Data_validation"
+DATE_VALIDATION_REPORT_FILE:str="report.yaml"
