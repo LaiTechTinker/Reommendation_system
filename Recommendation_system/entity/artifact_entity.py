@@ -9,3 +9,5 @@ class DataIngestionArtifact:
 @dataclass
 class DataValidationArtifact:
     report_file_path:str
+    drift_message:str
+   

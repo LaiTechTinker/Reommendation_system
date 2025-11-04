@@ -29,8 +29,7 @@ class DataValidation:
             logging.info("entered the columns validation section")
             status=len(data.columns)==len(self.schema_config["columns"])
             logging.info(f"ingested data contains all columns:{status}")
-            if status==False:
-                raise ValueError("Number of columns are not matching")
+           
             return status
         except Exception as e:
             raise RecomException(e,sys)
@@ -49,6 +48,7 @@ class DataValidation:
         On Failure  :   Write an exception log and then raise an exception
         """
         try:
+            status=None
             report = Report([DataDriftPreset() ])
             my_eval = report.run(reference_data=reference_df, current_data=current_df)
             report=my_eval.json()
@@ -60,11 +60,36 @@ class DataValidation:
             n_drifted_features =len([ite for ite in item if isinstance(ite["value"], (float, int)) and ite["value"] < 0.01])
             logging.info(f"{n_drifted_features}/{n_features} drift detected.")
             if n_drifted_features>0:
-                self.status1=True
+                status=True
             else:
-                self.status1=False
+                status=False
             logging.info(f"Drift detection result: {self.status1}")
-            return self.status1
+            return status
 
         except Exception as e:
             raise RecomException(e,sys)
+    def initiate_data_validation(self,):
+     try:
+        drift_message=""
+        logging.info("entered data validation initation")
+        train_file,test_file=(DataValidation.read_data(self.data_ingestion_artifact.training_file_path),
+                              DataValidation.read_data(self.data_ingestion_artifact.test_file_path))
+        column_status=self.validate_number_of_columns(train_file)
+        logging.info(f"The status of all the columns in the training file{column_status}")
+        column_status=self.validate_number_of_columns(test_file)
+        logging.info(f"The status of all the columns in the testing file is {column_status} ")
+        drift_status=self.detect_dataset_drift(reference_df=train_file,current_df=test_file)
+        if drift_status:
+            logging.info("drift detected in your data trying checking for it")
+            drift_message="drift detected in your data"
+        else:
+            logging.info("no drift detected in the data")
+            drift_message="no drift detected in your data"
+        data_validation_artifact=DataValidationArtifact(
+            report_file_path=self.data_validation_config.report_file_path,
+            drift_message=drift_message
+        )
+        return data_validation_artifact
+     except Exception as e:
+         raise RecomException(e,sys)
+    
