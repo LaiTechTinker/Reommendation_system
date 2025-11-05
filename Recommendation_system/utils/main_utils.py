@@ -1,6 +1,6 @@
 import os
 import sys
-
+import ast
 import numpy as np
 import dill
 import yaml
@@ -68,7 +68,63 @@ def save_numpy_array_data(file_path: str, array: np.array):
         raise RecomException(e, sys) from e
     
 
-
+def remove_whitespace(words):
+    # If it's a list of strings, remove spaces from each element
+    if isinstance(words, list):
+        return [i.replace(" ", "") for i in words if isinstance(i, str)]
+    
+    # If it's a string, just strip internal and external spaces
+    elif isinstance(words, str):
+        return words.replace(" ", "")
+    
+    # Otherwise (int, float, NaN, etc.), return it as-is
+    else:
+        return words
+def director_get(text):
+    name = []
+    
+    # If it's a string, safely parse it
+    if isinstance(text, str):
+        try:
+            items = ast.literal_eval(text)
+        except Exception:
+            # if it's not valid Python syntax, just return the text itself
+            return text
+    else:
+        # Already a list or other type
+        items = text
+    
+    # If it's a list of dicts, extract "name"
+    for i in items:
+       if i["job"]=="Director":
+           name.append(i["name"])
+       if len(name)==4:
+           break
+    
+    return name
+def convert_to_list(text):
+    name = []
+    
+    # If it's a string, safely parse it
+    if isinstance(text, str):
+        try:
+            items = ast.literal_eval(text)
+        except Exception:
+            # if it's not valid Python syntax, just return the text itself
+            return text
+    else:
+        # Already a list or other type
+        items = text
+    
+    # If it's a list of dicts, extract "name"
+    for i in items:
+        if isinstance(i, dict) and "name" in i:
+            name.append(i["name"])
+        
+        elif isinstance(i, str):
+            name.append(i)  # already plain string (like 'Action')
+    
+    return name
 
 def load_numpy_array_data(file_path: str) -> np.array:
     """

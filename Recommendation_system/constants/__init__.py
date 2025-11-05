@@ -35,5 +35,5 @@ SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
 data transformation related constants are stored here 
 """
 DATA_TRANSFORMATION_DIR:str="Data_transformation"
-DATA_TRANSFORMATION_TRAIN="transformed_train"
-DATA_TRANSFORMATION_TEST="transformed_test"
+DATA_TRANSFORMATION_TRAIN="transformed_train.csv"
+DATA_TRANSFORMATION_TEST="transformed_test.csv"

@@ -31,3 +31,13 @@ selected_columns:
 - keywords
 - cast
 - crew
+convert_to_list:
+- genres
+- keywords
+- cast
+remove_whitespace:
+- genres
+- cast
+- keywords
+- crew
+
