@@ -11,7 +11,7 @@ class DataValidationArtifact:
     report_file_path:str
     drift_message:str
 @dataclass
-class DataTransformation:
+class DataTransformationArtifact:
     transformed_dir:str
     trasformed_trained_file:str
     transformed_test_file:str

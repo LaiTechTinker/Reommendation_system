@@ -63,7 +63,7 @@ class DataValidation:
                 status=True
             else:
                 status=False
-            logging.info(f"Drift detection result: {self.status1}")
+            logging.info(f"Drift detection result: {status}")
             return status
 
         except Exception as e:
