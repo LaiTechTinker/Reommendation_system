@@ -32,6 +32,9 @@ class TrainPipeline:
         try:
             logging.info("entered the start_data_validation method")
             datavalidation=DataValidation(data_validation_config=self.data_validation_config,data_ingestion_artifact=data_ingestion_artifact)
+            data_val_artifact=datavalidation.initiate_data_validation()
+            logging.info(" initiating data_validation")
+            return data_val_artifact
         except Exception as e:
             raise RecomException(e,sys)
 
