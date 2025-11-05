@@ -34,18 +34,23 @@ class DataTransformation:
     return new_df
   def initiate_data_manipulation(self,):
     try:
-      if DataValidationArtifact.drift_message==False:
+      data_manipulation_artifact=None
+      if self.validation_artifact.drift_message==False:
        logging.info("entered the data_manipulation function")
        train_df=self.load_data(self.ingestion_artifact.training_file_path)
        test_df=self.load_data(self.ingestion_artifact.test_file_path)
+       train_df.to_csv(self.transformation_config.train_transformed)
+       test_df.to_csv(self.transformation_config.test_transformed)
        data_manipulation_artifact=DataTransformationArtifact(
          transformed_dir=self.transformation_config.data_tranform_dir,
          trasformed_trained_file=self.transformation_config.train_transformed,
          transformed_test_file=self.transformation_config.test_transformed
        )
-
-
-
-
+       
+      else: 
+        raise ValueError("there is a drift check you data before begining data_manipulation")
+      return data_manipulation_artifact
     except Exception as e:
       raise RecomException(e,sys)
+      
+      

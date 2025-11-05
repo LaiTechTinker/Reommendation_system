@@ -2,9 +2,10 @@ import sys
 from Recommendation_system.exception import RecomException
 from Recommendation_system.logger import logging
 from Recommendation_system.components.Data_ingestion import DataIngestion
+from Recommendation_system.components.Data_manipulation import DataTransformation
 from Recommendation_system.components.Data_validation import DataValidation
-from Recommendation_system.entity.config_entity import (DataIngestionConfig,DataValidationConfig)
-from Recommendation_system.entity.artifact_entity import (DataIngestionArtifact,DataValidationArtifact)  
+from Recommendation_system.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig)
+from Recommendation_system.entity.artifact_entity import (DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact)  
                                          
 
 
@@ -12,6 +13,7 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config=DataValidationConfig() 
+        self.data_manipulation_config=DataTransformationConfig
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component
@@ -37,6 +39,19 @@ class TrainPipeline:
             return data_val_artifact
         except Exception as e:
             raise RecomException(e,sys)
+    def start_data_transformation(self, data_ingestion_artifact: DataIngestionArtifact, data_validation_artifact: DataValidationArtifact) -> DataTransformationArtifact:
+        """
+        This method of TrainPipeline class is responsible for starting data transformation component
+        """
+        try:
+            data_transformation = DataTransformation(data_ingest_artifact=data_ingestion_artifact,
+                                                     data_transformation_config=self.data_manipulation_config,
+                                                     data_validation_artifact=data_validation_artifact)
+            data_transformation_artifact = data_transformation.initiate_data_manipulation()
+            return data_transformation_artifact
+        except Exception as e:
+            raise RecomException(e, sys)
+        
 
         
     def run_pipeline(self, ) -> None:
@@ -45,9 +60,11 @@ class TrainPipeline:
         """
         try:
             data_ingestion_artifact = self.start_data_ingestion()
-            data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
             logging.info(f"data ingest artifact:{data_ingestion_artifact}")
-            logging.info(f"data ingest artifact:{data_validation_artifact}")
+            data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            logging.info(f"data validation artifact:{data_validation_artifact}")
+            data_manipulation_artifact=self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact,data_validation_artifact=data_validation_artifact)
+            logging.info(f"data manipulation_artifact done{data_manipulation_artifact}")
         except Exception as e:
             raise RecomException(e, sys)
         
