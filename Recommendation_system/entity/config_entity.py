@@ -27,4 +27,9 @@ class DataTransformationConfig:
     data_tranform_dir=os.path.join(artifactConfig.artifact_dir,DATA_TRANSFORMATION_DIR)
     train_transformed=os.path.join(data_tranform_dir,DATA_TRANSFORMATION_TRAIN)
     test_transformed=os.path.join(data_tranform_dir,DATA_TRANSFORMATION_TEST)
+@dataclass
+class Embedding_Config:
+    vector_dir=os.path.join(artifactConfig.artifact_dir,VECTOR_EMBEDDING_DIR)
+    vector_file=os.path.join(vector_dir,VECTOR_EMBEDDING_FILE)
+    
 

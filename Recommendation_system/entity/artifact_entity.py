@@ -15,4 +15,8 @@ class DataTransformationArtifact:
     transformed_dir:str
     trasformed_trained_file:str
     transformed_test_file:str
+@dataclass
+class Embedding_Artifact:
+    vector_embdding_path:str
+    vector_embdedding_file_path:str
    

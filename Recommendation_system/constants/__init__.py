@@ -37,3 +37,8 @@ data transformation related constants are stored here
 DATA_TRANSFORMATION_DIR:str="Data_transformation"
 DATA_TRANSFORMATION_TRAIN="transformed_train.csv"
 DATA_TRANSFORMATION_TEST="transformed_test.csv"
+"""
+MODEL TRAINER related constant start with MODEL_TRAINER var name
+"""
+VECTOR_EMBEDDING_DIR: str = "similiarity_model"
+VECTOR_EMBEDDING_FILE: str = "similiarity.pkl"
