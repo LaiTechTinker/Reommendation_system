@@ -24,9 +24,9 @@ class DataValidationConfig:
     report_file_path:str=os.path.join(dataValidationDir,DATE_VALIDATION_REPORT_FILE)
 @dataclass
 class DataTransformationConfig:
-    data_tranform_dir=os.path.join(artifactConfig.artifact_dir,DATA_TRANSFORMATION_DIR)
-    train_transformed=os.path.join(data_tranform_dir,DATA_TRANSFORMATION_TRAIN)
-    test_transformed=os.path.join(data_tranform_dir,DATA_TRANSFORMATION_TEST)
+    data_transform_dir=os.path.join(artifactConfig.artifact_dir,DATA_TRANSFORMATION_DIR)
+    train_transformed=os.path.join(data_transform_dir,DATA_TRANSFORMATION_TRAIN)
+    test_transformed=os.path.join(data_transform_dir,DATA_TRANSFORMATION_TEST)
 @dataclass
 class Embedding_Config:
     vector_dir=os.path.join(artifactConfig.artifact_dir,VECTOR_EMBEDDING_DIR)

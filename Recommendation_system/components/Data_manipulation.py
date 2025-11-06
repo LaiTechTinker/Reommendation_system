@@ -38,7 +38,9 @@ class DataTransformation:
       logging.info("entered the data_manipulation function")
       train_df=self.load_data(self.ingestion_artifact.training_file_path)
       test_df=self.load_data(self.ingestion_artifact.test_file_path)
+      os.makedirs(os.path.dirname(self.data_transformation_config.train_transformed), exist_ok=True)
       train_df.to_csv(self.transformation_config.train_transformed)
+      os.makedirs(os.path.dirname(self.data_transformation_config.test_transformed), exist_ok=True)
       test_df.to_csv(self.transformation_config.test_transformed)
       data_manipulation_artifact=DataTransformationArtifact(
          transformed_dir=self.transformation_config.data_tranform_dir,

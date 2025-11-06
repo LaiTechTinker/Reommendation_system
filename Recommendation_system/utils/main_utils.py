@@ -4,6 +4,7 @@ import ast
 import numpy as np
 import dill
 import yaml
+import pickle
 from pandas import DataFrame
 from Recommendation_system.exception import RecomException
 from Recommendation_system.logger import logging
@@ -147,7 +148,7 @@ def save_object(file_path: str, obj: object) -> None:
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "wb") as file_obj:
-            dill.dump(obj, file_obj)
+            pickle.dump(obj, file_obj)
 
         logging.info("Exited the save_object method of utils")
 
