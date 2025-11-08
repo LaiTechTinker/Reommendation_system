@@ -5,7 +5,9 @@ from Recommendation_system.components.Data_ingestion import DataIngestion
 from Recommendation_system.components.Data_manipulation import DataTransformation
 from Recommendation_system.components.Data_validation import DataValidation
 from Recommendation_system.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig)
+#
 from Recommendation_system.entity.artifact_entity import (DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact)  
+#
                                          
 
 
@@ -13,7 +15,7 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config=DataValidationConfig() 
-        self.data_manipulation_config=DataTransformationConfig
+        self.data_manipulation_config=DataTransformationConfig()
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component

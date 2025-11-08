@@ -36,14 +36,17 @@ class DataTransformation:
     try:
       data_manipulation_artifact=None
       logging.info("entered the data_manipulation function")
+      os.makedirs(os.path.dirname(self.transformation_config.train_transformed), exist_ok=True)
+      os.makedirs(os.path.dirname(self.transformation_config.test_transformed), exist_ok=True)
       train_df=self.load_data(self.ingestion_artifact.training_file_path)
       test_df=self.load_data(self.ingestion_artifact.test_file_path)
-      os.makedirs(os.path.dirname(self.data_transformation_config.train_transformed), exist_ok=True)
       train_df.to_csv(self.transformation_config.train_transformed)
-      os.makedirs(os.path.dirname(self.data_transformation_config.test_transformed), exist_ok=True)
+      logging.info("transformed train file saved to path")
+      
       test_df.to_csv(self.transformation_config.test_transformed)
+      logging.info("transformed test file saved to path")
       data_manipulation_artifact=DataTransformationArtifact(
-         transformed_dir=self.transformation_config.data_tranform_dir,
+         transformed_dir=self.transformation_config.data_transform_dir,
          trasformed_trained_file=self.transformation_config.train_transformed,
          transformed_test_file=self.transformation_config.test_transformed
        )
