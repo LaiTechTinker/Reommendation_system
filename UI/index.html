@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Recommendation System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎬 Movie Recommendation System</h1>
+      <p>Enter a movie name to get 5 similar movie suggestions.</p>
+    </header>
+
+    <div class="search-box">
+      <input type="text" id="movieInput" placeholder="Type a movie name..." />
+      <button id="searchBtn">Get Recommendations</button>
+    </div>
+
+    <div class="loading" id="loading">Fetching recommendations...</div>
+    <div id="error" class="error"></div>
+
+    <div id="resultSection" class="result-section hidden">
+      <h2 id="queriedTitle"></h2>
+      <img id="queriedPoster" class="main-poster" alt="Queried Movie Poster" />
+
+      <h3>Recommended Movies</h3>
+      <div id="recommendations" class="recommendations"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
