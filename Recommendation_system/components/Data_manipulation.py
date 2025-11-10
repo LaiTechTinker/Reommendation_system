@@ -49,9 +49,7 @@ class DataTransformation:
          transformed_dir=self.transformation_config.data_transform_dir,
          trasformed_trained_file=self.transformation_config.train_transformed,
          transformed_test_file=self.transformation_config.test_transformed
-       )
-       
-     
+       )  
         
       return data_manipulation_artifact
     except Exception as e:

@@ -4,6 +4,7 @@ import ast
 import numpy as np
 import dill
 import yaml
+import pandas as pd
 import pickle
 from pandas import DataFrame
 from Recommendation_system.exception import RecomException
@@ -34,7 +35,13 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False) -> N
     except Exception as e:
         raise RecomException(e, sys) from e
     
-
+def read_csv(file_path:str):
+    logging.info("loading csv file")
+    try:
+        df=pd.read_csv(file_path)
+        return df
+    except Exception as e:
+        raise RecomException(e,sys)
 
 
 def load_object(file_path: str) -> object:

@@ -4,9 +4,9 @@ from Recommendation_system.logger import logging
 from Recommendation_system.components.Data_ingestion import DataIngestion
 from Recommendation_system.components.Data_manipulation import DataTransformation
 from Recommendation_system.components.Data_validation import DataValidation
-from Recommendation_system.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig)
-#
-from Recommendation_system.entity.artifact_entity import (DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact)  
+from Recommendation_system.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig,Embedding_Config)
+from Recommendation_system.components.model_training import EmbeddingTrainer
+from Recommendation_system.entity.artifact_entity import (DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact,Embedding_Artifact)  
 #
                                          
 
@@ -16,6 +16,8 @@ class TrainPipeline:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config=DataValidationConfig() 
         self.data_manipulation_config=DataTransformationConfig()
+        self.embedding_config=Embedding_Config()
+        
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component
@@ -53,7 +55,16 @@ class TrainPipeline:
             return data_transformation_artifact
         except Exception as e:
             raise RecomException(e, sys)
-        
+    def Create_embedding(self,datatransformation_artifact:DataTransformationArtifact):
+        try:
+            logging.info("entered the embedding creation section")
+            create_embedding=EmbeddingTrainer(datatransformation_artifact=datatransformation_artifact,
+                                              embedding_artifact=Embedding_Artifact,
+                                              embedding_config=self.embedding_config)
+            embedding_artifact=create_embedding.final_op()
+            return embedding_artifact  
+        except Exception as e:
+            raise RecomException(e,sys)
 
         
     def run_pipeline(self, ) -> None:
@@ -67,6 +78,8 @@ class TrainPipeline:
             logging.info(f"data validation artifact:{data_validation_artifact}")
             data_manipulation_artifact=self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact,data_validation_artifact=data_validation_artifact)
             logging.info(f"data manipulation_artifact done{data_manipulation_artifact}")
+            embedding_artifact=self.Create_embedding(datatransformation_artifact=data_manipulation_artifact)
+            logging.info(f"embedding artifact{embedding_artifact}")
         except Exception as e:
             raise RecomException(e, sys)
         

@@ -19,7 +19,7 @@ class EmbeddingTrainer:
         self.embedding_artifact=embedding_artifact
         self.embedding_config=embedding_config
         self.cv=CountVectorizer(max_features=5000,stop_words='english')
-        self.cosine_similiarity=cosine_similarity()
+        
     def stemmer(self,text):
          ps=PorterStemmer()
          y=[]
@@ -31,7 +31,7 @@ class EmbeddingTrainer:
         logging.info("entered initiate_count_vactorizer")
         df["combined_features"]=df["combined_features"].apply(self.stemmer)
         vectors=self.cv.fit_transform(df['combined_features']).toarray()
-        similarity_scores=self.cosine_similiarity(vectors)
+        similarity_scores=cosine_similarity(vectors)
         return similarity_scores
      except Exception as e:
         raise RecomException(e)
@@ -40,7 +40,7 @@ class EmbeddingTrainer:
         logging.info("entered embedding final ops")
         train_df=pd.read_csv(self.datatransformation.trasformed_trained_file)
         scores=self.initiate_count_vectorizer(train_df)
-        save_object(self.embedding_config.vector_file)
+        save_object(self.embedding_config.vector_file,scores)
         embdding_artifact=Embedding_Artifact(
            vector_embdedding_file_path=self.embedding_config.vector_file
         )
