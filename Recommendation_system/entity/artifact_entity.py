@@ -19,4 +19,8 @@ class DataTransformationArtifact:
 class Embedding_Artifact:
     vector_embdding_path:str
     vector_embdedding_file_path:str
+@dataclass
+class ModelPusherArtifact:
+    bucket_name:str
+    s3_model_path:str
    

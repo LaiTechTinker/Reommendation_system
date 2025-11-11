@@ -31,5 +31,10 @@ class DataTransformationConfig:
 class Embedding_Config:
     vector_dir=os.path.join(artifactConfig.artifact_dir,VECTOR_EMBEDDING_DIR)
     vector_file=os.path.join(vector_dir,VECTOR_EMBEDDING_FILE)
+
+@dataclass
+class ModelPusherConfig:
+    bucket_name: str = MODEL_BUCKET_NAME
+    s3_model_key_path: str = MODEL_FILE_NAME
     
 

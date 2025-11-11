@@ -1,5 +1,5 @@
 import boto3
-from Recommendation_system.cloudstorage import S3Client
+from Recommendation_system.configuration.aws_connect import S3Client
 from io import StringIO
 from typing import Union,List
 import os,sys
