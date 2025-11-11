@@ -42,3 +42,7 @@ MODEL TRAINER related constant start with MODEL_TRAINER var name
 """
 VECTOR_EMBEDDING_DIR: str = "similiarity_model"
 VECTOR_EMBEDDING_FILE: str = "similiarity.pkl"
+
+""""
+AWS STORAGE CONSTANTS CONFIG
+"""
