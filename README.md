@@ -27,29 +27,7 @@ Users can input any movie title, and the system suggests **five similar movies**
 
 ---
 
-## 📂 Project Structure  
 
-```
-Recommendation/
-│
-├── UI/
-│   ├── index.html          # Frontend page
-│   └── static/
-│       ├── style.css       # Styling for UI
-│       └── script.js       # JS logic for API calls
-│
-├── Recommendation_system/
-│   ├── components/
-│   │   └── Prediction.py   # Flask app + ML logic
-│   ├── notebooks/          # Model + pickle file
-│   └── utils/              # Helper functions
-│
-├── artifacts/              # Transformed datasets, logs, etc.
-├── demo.py                 # Entry point to start Flask app
-├── requirements.txt        # Python dependencies
-├── render.yaml             # Render deployment config
-└── README.md               # Project documentation
-```
 
 ---
 
