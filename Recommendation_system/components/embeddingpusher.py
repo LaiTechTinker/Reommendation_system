@@ -30,7 +30,8 @@ class EmbeddingPusher:
         try:
             logging.info("Uploading artifacts folder to s3 bucket")
 
-         
+            # self.usvisa_estimator.save_model(from_file=self.model_evaluation_artifact.trained_model_path)
+
 
             model_pusher_artifact = ModelPusherArtifact(bucket_name=self.model_pusher_config.bucket_name,
                                                         s3_model_path=self.model_pusher_config.s3_model_key_path)
