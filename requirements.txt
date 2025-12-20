@@ -7,3 +7,8 @@ dotenv
 pymongo
 dill
 from_root
+boto
+pymongo
+flask
+flask_cors
+
