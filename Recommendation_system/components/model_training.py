@@ -1,6 +1,7 @@
 from Recommendation_system.logger import logging
 from sklearn.feature_extraction.text import CountVectorizer
 import nltk
+import sys
 import sklearn
 from Recommendation_system.utils.main_utils import save_object
 from sklearn.metrics.pairwise import cosine_similarity
@@ -42,11 +43,11 @@ class EmbeddingTrainer:
         scores=self.initiate_count_vectorizer(train_df)
         save_object(self.embedding_config.vector_file,scores)
         embdding_artifact=Embedding_Artifact(
-           vector_embdedding_file_path=self.embedding_config.vector_file
+            vector_embedding_file_path=self.embedding_config.vector_file
         )
         return embdding_artifact
      except Exception as e:
-        raise RecomException(e)
+        raise RecomException(e,sys)
 
 
 

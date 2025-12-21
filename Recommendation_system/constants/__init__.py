@@ -52,8 +52,7 @@ AWS_SECRET_ACCESS_KEY = "AWS_SECRET_ACCESS_KEY"
 REGION_NAME = "us-east-1"
 
 """
-MODEL EVALUATION related constant 
+Embedding pusher related constant 
 """
-MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = 0.02
 MODEL_BUCKET_NAME = "Lairecom-simi2024"
 MODEL_PUSHER_S3_KEY = "model-registry"

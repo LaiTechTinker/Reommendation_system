@@ -17,8 +17,8 @@ class DataTransformationArtifact:
     transformed_test_file:str
 @dataclass
 class Embedding_Artifact:
-    vector_embdding_path:str
-    vector_embdedding_file_path:str
+    # vector_embdding_path:str
+    vector_embedding_file_path:str
 @dataclass
 class ModelPusherArtifact:
     bucket_name:str
